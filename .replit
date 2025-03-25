@@ -1,10 +1,10 @@
 compile = "make"
 run = "./hw4-11"
 hidden = ["main", "**/*.o", "**/*.d", ".ccls-cache", "Makefile"]
-modules = ["cpp-clang14", "nix"]
+modules = ["cpp-clang14"]
 
 [nix]
-channel = "stable-23_11"
+channel = "stable-24_05"
 
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".ccls-cache"]

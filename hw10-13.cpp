@@ -6,12 +6,11 @@
 #include <iomanip>
 using namespace std;
 
-//function prototype
-double getPayment(int, double, int);
+// Function prototype
+void getPayment(int, double, int, double&);
 
 int main()
 {
-    //declare variables
     int carPrice = 0;
     int rebate = 0;
     double creditRate = 0.0;
@@ -31,30 +30,20 @@ int main()
     cout << "Term in years: ";
     cin >> term;
 
-    //call function to calculate payments
-    creditPayment = getPayment(carPrice - rebate,
-        creditRate / 12, term * 12);
-    dealerPayment = getPayment(carPrice, 
-        dealerRate / 12, term * 12);    //assign values to calculate payments
-    
-    //display payments
-    cout << fixed << setprecision(2) << endl; 
-    cout << "Credit union payment: $" 
-        << creditPayment << endl;
-    cout << "Dealer payment: $"
-        << dealerPayment << endl;
-    
-    return 0;
-}//end of main function    
+    // Call void function to calculate payments
+    getPayment(carPrice - rebate, creditRate / 12, term * 12, creditPayment);
+    getPayment(carPrice, dealerRate / 12, term * 12, dealerPayment);
 
-    //*****function definitions*****
-double getPayment(int prin,
-                  double monthRate, 
-                  int months)
+    // Display results
+    cout << fixed << setprecision(2) << endl;
+    cout << "Credit union payment: $" << creditPayment << endl;
+    cout << "Dealer payment: $" << dealerPayment << endl;
+
+    return 0;
+} // end of main function
+
+// Function definition
+void getPayment(int prin, double monthRate, int months, double& payment)
 {
-    //calculates and returns a monthly payment
-    double monthPay = 0.0;
-    monthPay = prin * monthRate / 
-        (1 - pow(monthRate + 1, -months));
-    return monthPay;
-} //end of getPayment function//*****function definition*****
+    payment = prin * monthRate / (1 - pow(monthRate + 1, -months));
+} // end of getPayment function
